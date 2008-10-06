@@ -1,6 +1,7 @@
 # TODO
 # - news uid
 # - initscript
+# - sane build system (patch makefile, cflags, cc, destdir)
 Summary:	Tiny, easy to configure NNTP server for Unix
 Name:		wendzelnntpd
 Version:	1.4.0
@@ -9,7 +10,7 @@ License:	GPL v3
 Group:		Networking/Daemons
 Source0:	http://dl.sourceforge.net/wendzelnntpd/%{name}-%{version}-src.tgz
 # Source0-md5:	9ad40120ebf6d72417ecc0b8b7910350
-URL:		http://www.easysw.com/~mike/newsd/
+URL:		http://www.wendzel.de/?sub=softw&ssub=wendzelnntpd
 BuildRequires:	bison
 BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite3-devel
