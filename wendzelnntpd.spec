@@ -2,6 +2,11 @@
 # - news uid
 # - initscript
 # - sane build system (patch makefile, cflags, cc, destdir)
+# - finish and subpackage gui
+#
+# Conditional build:
+%bcond_with	gui		# qt gui
+#
 Summary:	Tiny, easy to configure NNTP server for Unix
 Name:		wendzelnntpd
 Version:	1.4.0
@@ -14,6 +19,10 @@ URL:		http://www.wendzel.de/?sub=softw&ssub=wendzelnntpd
 BuildRequires:	bison
 BuildRequires:	sed >= 4.0
 BuildRequires:	sqlite3-devel
+%if %{with gui}
+BuildRequires:	qt4-build >= 4.3.3-3
+BuildRequires:	qt4-qmake >= 4.3.3-3
+%endif
 Requires(post,preun):	/sbin/chkconfig
 Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -39,6 +48,13 @@ export CONFDIR=%{_sysconfdir}
 
 %{__make} \
 	CC="%{__cc}"
+
+%if %{with gui}
+cd gui/src
+qmake-qt4 src.pro
+%{__make}
+
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
